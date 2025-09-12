@@ -1,0 +1,39 @@
+Activity1:
+
+DROP TABLE salesman
+
+CREATE TABLE salesman(salesman_id int PRIMARY KEY, salesman_name varchar(20) NOT NULL, salesman_city varchar(20), commission int);
+
+DESCRIBE salesman;
+
+Activity2:
+    
+INSERT ALL
+  INTO salesman VALUES (101, 'Rakesh', 'Hyderabad', 15)
+  INTO salesman VALUES (102, 'Anita', 'Bangalore', 12)
+  INTO salesman VALUES (103, 'Suresh', 'Chennai', 10)
+  INTO salesman VALUES (104, 'Kiran', 'Mumbai', 18);
+
+select * from salessman;
+
+select 1 from dual;
+
+Activity3:
+select salesman_id, salesman_city from salesman;
+
+select * from salesman where salesman_city='Bangalore';
+
+select salesman_id, commission from salesman where salesman_name='Rakesh';
+
+Activity4:
+ALTER table salesman ADD (grade int);
+DESCRIBE salesman;
+update salesman set grade = 100;
+select * from salesman;
+
+Activity5:
+
+update salesman set grade=200 where salesman_city='munbai';
+update salesman set grade=300 where salesman_name='rakesh';
+update salesman set salesman_name='pierre' where salesman_name='kiran';
+select * from salesman;
