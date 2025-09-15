@@ -1,0 +1,35 @@
+Activity-09
+create table customers (
+    customer_id int primary key, customer_name varchar(32),
+    city varchar(20), grade int, salesman_id int);
+
+
+INSERT ALL
+    INTO customers VALUES (3002, 'Nick Rimando', 'New York', 100, 5001)
+    INTO customers VALUES (3007, 'Brad Davis', 'New York', 200, 5001)
+    INTO customers VALUES (3005, 'Graham Zusi', 'California', 200, 5002)
+    INTO customers VALUES (3008, 'Julian Green', 'London', 300, 5002)
+    INTO customers VALUES (3004, 'Fabian Johnson', 'Paris', 300, 5006)
+    INTO customers VALUES (3009, 'Geoff Cameron', 'Berlin', 100, 5003)
+    INTO customers VALUES (3003, 'Jozy Altidor', 'Moscow', 200, 5007)
+    INTO customers VALUES (3001, 'Brad Guzan', 'London', 300, 5005)
+SELECT 1 FROM DUAL;
+
+Activity-10
+
+SELECT * FROM orders WHERE salesman_id = (SELECT salesman_idFROM customers WHERE customer_id = 3007);
+
+SELECT * FROM orders WHERE salesman_id IN (SELECT salesman_id FROM customers WHERE city = 'New York');
+
+SELECT COUNT(*) FROM customers WHERE grade > (SELECT AVG(grade) FROM customers WHERE city = 'New York');
+
+SELECT * FROM orders WHERE salesman_id IN (SELECT salesman_id FROM salesman WHERE commission = (SELECT MAX(commission) FROM salesman));
+
+Activity-11
+
+SELECT s.salesman_name, COUNT(o.order_id) AS order_count
+FROM salesman s
+JOIN orders o ON s.salesman_id = o.salesman_id
+GROUP BY s.salesman_name
+HAVING COUNT(o.order_id) > 1
+ORDER BY s.salesman_name;
